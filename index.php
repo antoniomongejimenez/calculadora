@@ -9,6 +9,8 @@
         <?php
             require './auxiliar.php';
 
+            const OPS = ['+', '-', '*', '/'];
+
             $op1 = isset($_GET['op1']) ? trim($_GET['op1']) : null;
             $op2 = isset($_GET['op2']) ? trim($_GET['op2']) : null;
             $op = isset($_GET['op']) ? trim($_GET['op']) : null;
@@ -23,7 +25,7 @@
                 if (!is_numeric($op2)) {
                     $error = error('El segundo operando no es un numero.');
                 }
-                if ($op != '+' && $op != '-' && $op != '*' && $op != '/') {
+                if (!in_array($op, $OPS)) {
                     $error = error('El operador no es válido.');
                 }
 
