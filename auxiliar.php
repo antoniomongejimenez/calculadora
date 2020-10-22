@@ -1,6 +1,8 @@
 <?php
 
 
+
+
 function error($mensaje) 
 {
     echo "<h3>Error: $mensaje</h3>";
@@ -18,20 +20,21 @@ function error($mensaje)
 
 function calcular($op1, $op2, $op) 
 {
-    switch ($op) {
-        case '+':
-            $res = $op1 + $op2;
-            break;
-        case '-':
-            $res = $op1 - $op2;
-            break;
-        case '*':
-            $res = $op1 * $op2;
-            break;
-        case '/':
-            $res = $op1 / $op2;
-            break; 
-        }
+    eval("\$res = \$op1 $op \$op2;");
 
-        return $res;
+    // switch ($op) {
+    //     case '+':
+    //         $res = $op1 + $op2;
+    //         break;
+    //     case '-':
+    //         $res = $op1 - $op2;
+    //         break;
+    //     case '*':
+    //         $res = $op1 * $op2;
+    //         break;
+    //     case '/':
+    //         $res = $op1 / $op2;
+    //         break; 
+    //     }
+    return $res;
 }

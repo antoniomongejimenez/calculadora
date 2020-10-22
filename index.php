@@ -9,7 +9,7 @@
         <?php
             require './auxiliar.php';
 
-            const OPS = ['+', '-', '*', '/'];
+            const OPS = ['+', '-', '*', '/', '**'];
 
             $op1 = isset($_GET['op1']) ? trim($_GET['op1']) : null;
             $op2 = isset($_GET['op2']) ? trim($_GET['op2']) : null;
@@ -25,7 +25,7 @@
                 if (!is_numeric($op2)) {
                     $error = error('El segundo operando no es un numero.');
                 }
-                if (!in_array($op, $OPS)) {
+                if (!in_array($op, OPS)) {
                     $error = error('El operador no es válido.');
                 }
 
@@ -37,13 +37,19 @@
 
         <form action="" method="get">
             <label for="op1">Primer operando:</label>
-            <input type="text" name="op1" value="<?= $op1 ?>" id="op1"><br>
+            <input type="number" name="op1" value="<?= $op1 ?>" id="op1"><br>
             
             <label for="op2">Segundo operando:</label>
-            <input type="text" name="op2" value="<?= $op2 ?>" id="op2"><br>
+            <input type="number" name="op2" value="<?= $op2 ?>" id="op2"><br>
 
             <label for="op">Operacion:</label>
-            <input type="text" name="op" value="<?= $op ?>" id="op"><br>
+            <select name="op" id="op">
+                <?php foreach (OPS as $o): ?>
+                    <option value="<?= $o ?>" <?= $op == $o ? 'selected' : ''?> >
+                        <?= $o ?>
+                    </option>
+                <?php endforeach ?>
+            </select><br>
 
             <button type="submit">Calcular</button><br>
 
