@@ -1,5 +1,9 @@
 <?php
 
+function selected($op, $o)
+{
+    return $op == $o ? 'selected' : '';
+}
 
 
 
