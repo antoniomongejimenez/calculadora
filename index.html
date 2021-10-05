@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calculadora</title>
 </head>
 <body>
     <form action="index.php" method="get">
@@ -16,8 +16,18 @@
             <label for="op2">Segundo operando:</label>
             <input type="text" id="op2" name="y">
           </div>
+
           <div>
-            <button type="submit">Sumar</button>
+            <label for="op">Operación:</label>
+            <select id="op" name="oper">
+                <option value="suma">+</option>
+                <option value="resta">-</option>
+                <option value="multi">*</option>
+                <option value="division">/</option>
+            </select>
+          </div>
+          <div>
+            <button type="submit">Calcular</button>
           </div>
     </form>    
 </body>
