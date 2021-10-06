@@ -7,14 +7,15 @@
     <title>Calculadora</title>
 </head>
 <body>
+    <h1>Calculadora</h1>
     <form action="index.php" method="get">
          <div>
            <label for="op1">Primer operando:</label>
-           <input type="text" id="op1" name="x">
+           <input type="number" id="op1" name="x">
          </div>
          <div>
             <label for="op2">Segundo operando:</label>
-            <input type="text" id="op2" name="y">
+            <input type="number" id="op2" name="y">
           </div>
 
           <div>
@@ -22,12 +23,12 @@
             <select id="op" name="oper">
                 <option value="suma">+</option>
                 <option value="resta">-</option>
-                <option value="multi">*</option>
-                <option value="division">/</option>
+                <option value="mult">*</option>
+                <option value="div">/</option>
             </select>
           </div>
           <div>
-            <button type="submit">Calcular</button>
+            <button type="submit">Operar</button>
           </div>
     </form>    
 </body>

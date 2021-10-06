@@ -6,19 +6,45 @@
     <title>Calculadora</title>
 </head>
 <body>
-<?php if (isset($_GET['x'])):?>
-        <p>El valor del parámetro x es: <?= $_GET['x'] ?></p>
-    <?php else: ?>
-        <p>No hay valor de x</p>
-    <?php endif ?>
+    <?php
 
-    <?php if (isset($_GET['y'])):?>
-        <p>El valor del parámetro y es: <?= $_GET['y'] ?></p>
-    <?php else: ?>
-        <p>No hay valor de y</p>
-    <?php endif ?>
+    $error = [];
 
-    <?php if (mb_strlen($_GET['x']) > 0 and mb_strlen($_GET['y']) > 0 and isset($_GET['oper'])): ?>
+    if (isset($_GET['x'])):
+        $x = trim($_GET['x']);
+        if (!is_numeric($x)):
+            $error[] = "El parametro x no es correcto.";
+        endif;
+        else:
+            $error[] = "Falta el valor x";
+    endif;
+
+    if (isset($_GET['y'])):
+        $y = trim($_GET['y']);
+        if (!is_numeric($y)):
+            $error[] = "El parametro y no es correcto.";
+        endif;
+        else:
+            $error[] = "Falta el valor x";
+    endif;
+
+    if (isset($_GET['oper'])):
+        $oper = trim($_GET['oper']);
+        if (!in_array($oper, ['suma', 'resta', 'mult', 'div'])):
+            $error[] = "El parametro oper no es correcto.";
+        endif;
+    else:
+        $error[] = "Falta el valor x";
+    endif; 
+    ?>
+
+
+    <?php foreach($error as $err): ?>
+        <p>Error: <?= $err ?></p>
+    <?php endforeach ?>
+
+
+    <?php if (empty($error)): ?>
         <?php switch($_GET['oper']) {
             case 'suma':
                 $res = $_GET['x'] + $_GET['y'];
@@ -32,7 +58,8 @@
             case 'div':
                 $res = $_GET['x'] / $_GET['y'];
                 break;
-            }?>
+            }
+        ?>
             <p>El resultado es <?= $res ?></p>
     <?php endif ?>
 
