@@ -46,22 +46,26 @@
         return $val;
     }
 
+    function mostrar_errores($error) {
+        foreach($error as $err): ?>
+            <p>Error: <?= $err ?></p>
+        <?php 
+        endforeach;
+    }
+
     $error = [];
 
     $x = filtrar_numero('x');
     $y = filtrar_numero('y');
     $oper = filtrar_opciones('oper', ['suma', 'resta', 'mult', 'div']);
 
+    mostrar_errores($error)
+
     ?>
 
 
-    <?php foreach($error as $err): ?>
-        <p>Error: <?= $err ?></p>
-    <?php endforeach ?>
-
-
-    <?php if (empty($error)): ?>
-        <?php switch($_GET['oper']) {
+    <?php if (empty($error)):
+        switch($_GET['oper']) {
             case 'suma':
                 $res = $_GET['x'] + $_GET['y'];
                 break;
