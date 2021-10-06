@@ -7,35 +7,51 @@
 </head>
 <body>
     <?php
+    
+
+    function filtrar_numero($par) //&$x se manda por referencia en vez de por valor 
+    {
+        global $error;
+
+        $val = null;
+
+        if (isset($_GET[$par])):
+            $val = trim($_GET[$par]);
+            if (!is_numeric($val)):
+                $error[] = "El parametro $par no es correcto.";
+            endif;
+        else:
+            $error[] = "Falta el valor $par";
+        endif;
+
+        return $val;
+    }
+
+
+    function filtrar_opciones($par, $opciones)
+    {
+        global $error;
+
+        $val = null;
+
+        if (isset($_GET[$par])):
+            $val = trim($_GET[$par]);
+            if (!in_array($val, $opciones)):
+                $error[] = "El parametro $par no es correcto.";
+            endif;
+        else:
+            $error[] = "Falta el valor $par";
+        endif; 
+
+        return $val;
+    }
 
     $error = [];
 
-    if (isset($_GET['x'])):
-        $x = trim($_GET['x']);
-        if (!is_numeric($x)):
-            $error[] = "El parametro x no es correcto.";
-        endif;
-        else:
-            $error[] = "Falta el valor x";
-    endif;
+    $x = filtrar_numero('x');
+    $y = filtrar_numero('y');
+    $oper = filtrar_opciones('oper', ['suma', 'resta', 'mult', 'div']);
 
-    if (isset($_GET['y'])):
-        $y = trim($_GET['y']);
-        if (!is_numeric($y)):
-            $error[] = "El parametro y no es correcto.";
-        endif;
-        else:
-            $error[] = "Falta el valor x";
-    endif;
-
-    if (isset($_GET['oper'])):
-        $oper = trim($_GET['oper']);
-        if (!in_array($oper, ['suma', 'resta', 'mult', 'div'])):
-            $error[] = "El parametro oper no es correcto.";
-        endif;
-    else:
-        $error[] = "Falta el valor x";
-    endif; 
     ?>
 
 
@@ -62,6 +78,8 @@
         ?>
             <p>El resultado es <?= $res ?></p>
     <?php endif ?>
+
+    <a href="index.html">Volver</a>
 
 </body>
 </html>
