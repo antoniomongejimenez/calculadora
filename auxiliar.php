@@ -1,5 +1,6 @@
 <?php
-    
+    const OPER = ['+', '-', '*', '/'];
+
     /**
      * filtra un parámetro recibido mediante GET, lo trimea y 
      * comprueba si es un número ( en caso contrario, devuelve null)
@@ -27,6 +28,16 @@
         return $val;
     }
 
+    
+    /**
+     * filtrar_opciones Filtra las opciones de calculo (+,-,*, /) y si es 
+     * incorrecta pasa los errores al array errores
+     *
+     * @param  string       $par   El nombre del parámetro
+     * @param  array        $opciones El array de opciones.
+     * @param  array        $error El array de errores.
+     * @return string|null
+     */
 
     function filtrar_opciones(
         string $par, 
@@ -58,6 +69,8 @@
         endforeach;
     }
 
+    
+
     function calcular(
         int|float|string $x, 
         int|float|string $y, 
@@ -65,19 +78,19 @@
         ): int|float|null
     {
         switch ($oper) {
-            case 'suma':
+            case '+':
                 $res = $x + $y;
                 break;
 
-            case 'resta':
+            case '-':
                 $res = $x - $y;
                 break;
 
-            case 'mult':
+            case '*':
                 $res = $x * $y;
                 break;
 
-            case 'div':
+            case '/':
                 $res = $x / $y;
                 break;
 
