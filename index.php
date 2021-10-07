@@ -53,6 +53,34 @@
         endforeach;
     }
 
+    function calcular($x, $y, $oper)
+    {
+        switch ($oper) {
+            case 'suma':
+                $res = $x + $y;
+                break;
+
+            case 'resta':
+                $res = $x - $y;
+                break;
+
+            case 'mult':
+                $res = $x * $y;
+                break;
+
+            case 'div':
+                $res = $x / $y;
+                break;
+
+            default:
+                $res = null;
+                break;
+        }
+
+        return $res;
+    }
+    
+
     $error = [];
 
     $x = filtrar_numero('x');
@@ -63,25 +91,11 @@
 
     ?>
 
-
     <?php if (empty($error)):
-        switch($_GET['oper']) {
-            case 'suma':
-                $res = $_GET['x'] + $_GET['y'];
-                break;
-            case 'resta':
-                $res = $_GET['x'] - $_GET['y'];
-                break;
-            case 'mult':
-                $res = $_GET['x'] * $_GET['y'];
-                break;
-            case 'div':
-                $res = $_GET['x'] / $_GET['y'];
-                break;
-            }
-        ?>
-            <p>El resultado es <?= $res ?></p>
+        $res = calcular($x, $y, $oper) ?>
+        <p>El resultado es <?= $res ?></p>
     <?php endif ?>
+
 
     <a href="index.html">Volver</a>
 
