@@ -9,7 +9,7 @@
     <?php
     
 
-    function filtrar_numero($par) //&$x se manda por referencia en vez de por valor 
+    function filtrar_numero(string $par): ?string  
     {
         global $error;
 
@@ -28,7 +28,7 @@
     }
 
 
-    function filtrar_opciones($par, $opciones)
+    function filtrar_opciones(string $par, array $opciones): ?string
     {
         global $error;
 
@@ -46,14 +46,19 @@
         return $val;
     }
 
-    function mostrar_errores($error) {
+    function mostrar_errores(array $error): void
+    {
         foreach($error as $err): ?>
             <p>Error: <?= $err ?></p>
         <?php 
         endforeach;
     }
 
-    function calcular($x, $y, $oper)
+    function calcular(
+        int|float|string $x, 
+        int|float|string $y, 
+        string $oper
+        ): int|float|null
     {
         switch ($oper) {
             case 'suma':
