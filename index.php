@@ -8,11 +8,19 @@
 <body>
     <?php
     
+    /**
+     * filtra un parámetro recibido mediante GET, lo trimea y 
+     * comprueba si es un número ( en caso contrario, devuelve null)
+     * 
+     * Actualiza el array de errores en caso necesario.
+     *
+     * @param  string       $par   El nombre del parámetro
+     * @param  array        $error El array de errores.
+     * @return string|null         El valor del parámetro o null si no es un numero.
+     */
 
-    function filtrar_numero(string $par): ?string  
+    function filtrar_numero(string $par, array &$error): ?string  
     {
-        global $error;
-
         $val = null;
 
         if (isset($_GET[$par])):
@@ -28,7 +36,11 @@
     }
 
 
-    function filtrar_opciones(string $par, array $opciones): ?string
+    function filtrar_opciones(
+        string $par, 
+        array $opciones, 
+        array &$error
+        ): ?string
     {
         global $error;
 
@@ -88,9 +100,13 @@
 
     $error = [];
 
-    $x = filtrar_numero('x');
-    $y = filtrar_numero('y');
-    $oper = filtrar_opciones('oper', ['suma', 'resta', 'mult', 'div']);
+    $x = filtrar_numero('x', $error);
+    $y = filtrar_numero('y', $error);
+    $oper = filtrar_opciones(
+        'oper', 
+        ['suma', 'resta', 'mult', 'div'],
+        $error
+    );
 
     mostrar_errores($error)
 
