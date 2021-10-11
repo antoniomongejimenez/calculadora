@@ -32,9 +32,11 @@
           <label for="op">Operación:</label>
           <select id="op" name="oper">
 
-              <?php foreach (OPER as $ope): ?>
-                  <option value="<?= $ope ?>"><?= $ope ?></option>
-              <?php endforeach ?>
+            <?php foreach (OPER as $op): ?>
+                <option value="<?= $op ?>" <?= selected($oper, $op) ?>>
+                    <?= $op ?>
+                </option>
+            <?php endforeach ?>
 
           </select>
         </div>

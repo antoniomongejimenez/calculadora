@@ -99,3 +99,8 @@
 
         return $res;
     }
+
+function selected($a, $b)
+{
+    return ($a == $b) ? 'selected' : '';
+}
