@@ -18,11 +18,11 @@
 
         if (isset($_GET[$par])):
             $val = trim($_GET[$par]);
-            if (!is_numeric($val)):
+            if ($val == ''):
+                $error[] = "El parámetro $par es obligatorio";
+            elseif (!is_numeric($val)):
                 $error[] = "El parametro $par no es correcto.";
             endif;
-        else:
-            $error[] = "Falta el valor $par";
         endif;
 
         return $val;
@@ -54,8 +54,6 @@
             if (!in_array($val, $opciones)):
                 $error[] = "El parametro $par no es correcto.";
             endif;
-        else:
-            $error[] = "Falta el valor $par";
         endif; 
 
         return $val;
